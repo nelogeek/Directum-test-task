@@ -47,49 +47,88 @@ namespace DirectumTestTask
         }
         static void AddMeeting(MeetingManager manager)
         {
-            Console.Write("Введите описание встречи: ");
-            var description = Console.ReadLine();
-            Console.Write("Введите дату и время начала встречи (dd.MM.yyyy HH:mm): ");
-            var startTime = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
-            Console.Write("Введите дату и время окончания встречи (dd.MM.yyyy HH:mm): ");
-            var endTime = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
-            Console.Write("Введите время напоминания (в минутах): ");
-            var reminderMinutes = int.Parse(Console.ReadLine());
-            manager.AddMeeting(startTime, endTime, description, TimeSpan.FromMinutes(reminderMinutes));
+            try
+            {
+                Console.Write("Введите описание встречи: ");
+                var description = Console.ReadLine();
+                Console.Write("Введите дату и время начала встречи (dd.MM.yyyy HH:mm): ");
+                var startTime = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
+                Console.Write("Введите дату и время окончания встречи (dd.MM.yyyy HH:mm): ");
+                var endTime = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
+                Console.Write("Введите время напоминания (в минутах): ");
+                var reminderMinutes = int.Parse(Console.ReadLine());
+                manager.AddMeeting(startTime, endTime, description, TimeSpan.FromMinutes(reminderMinutes));
+                Console.WriteLine("Встреча успешно добавлена.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}. Попробуйте еще раз.");
+            }
         }
         static void EditMeeting(MeetingManager manager)
         {
-            Console.Write("Введите индекс встречи для редактирования: ");
-            var index = int.Parse(Console.ReadLine());
-            Console.Write("Введите новое описание встречи: ");
-            var description = Console.ReadLine();
-            Console.Write("Введите новую дату и время начала встречи (dd.MM.yyyy HH:mm): ");
-            var startTime = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
-            Console.Write("Введите новую дату и время окончания встречи (dd.MM.yyyy HH:mm): ");
-            var endTime = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
-            Console.Write("Введите новое время напоминания (в минутах): ");
-            var reminderMinutes = int.Parse(Console.ReadLine());
-            manager.EditMeeting(index, startTime, endTime, description, TimeSpan.FromMinutes(reminderMinutes));
+            try
+            {
+                Console.Write("Введите индекс встречи для редактирования: ");
+                var index = int.Parse(Console.ReadLine());
+                Console.Write("Введите новое описание встречи: ");
+                var description = Console.ReadLine();
+                Console.Write("Введите новую дату и время начала встречи (dd.MM.yyyy HH:mm): ");
+                var startTime = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
+                Console.Write("Введите новую дату и время окончания встречи (dd.MM.yyyy HH:mm): ");
+                var endTime = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
+                Console.Write("Введите новое время напоминания (в минутах): ");
+                var reminderMinutes = int.Parse(Console.ReadLine());
+                manager.EditMeeting(index, startTime, endTime, description, TimeSpan.FromMinutes(reminderMinutes));
+                Console.WriteLine("Встреча успешно отредактирована.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}. Попробуйте еще раз.");
+            }
         }
         static void DeleteMeeting(MeetingManager manager)
         {
-            Console.Write("Введите индекс встречи для удаления: ");
-            var index = int.Parse(Console.ReadLine());
-            manager.DeleteMeeting(index);
+            try
+            {
+                Console.Write("Введите индекс встречи для удаления: ");
+                var index = int.Parse(Console.ReadLine());
+                manager.DeleteMeeting(index);
+                Console.WriteLine("Встреча успешно удалена.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}. Попробуйте еще раз.");
+            }
         }
         static void ViewMeetings(MeetingManager manager)
         {
-            Console.Write("Введите дату для просмотра встреч (dd.MM.yyyy): ");
-            var date = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy", CultureInfo.InvariantCulture);
-            manager.ViewMeetings(date);
+            try
+            {
+                Console.Write("Введите дату для просмотра встреч (dd.MM.yyyy): ");
+                var date = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy", CultureInfo.InvariantCulture);
+                manager.ViewMeetings(date);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}. Попробуйте еще раз.");
+            }
         }
         static void ExportMeetings(MeetingManager manager)
         {
-            Console.Write("Введите дату для экспорта встреч (dd.MM.yyyy): ");
-            var date = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy", CultureInfo.InvariantCulture);
-            Console.Write("Введите имя файла для экспорта: ");
-            var fileName = Console.ReadLine();
-            manager.ExportMeetings(date, fileName);
+            try
+            {
+                Console.Write("Введите дату для экспорта встреч (dd.MM.yyyy): ");
+                var date = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy", CultureInfo.InvariantCulture);
+                Console.Write("Введите имя файла для экспорта: ");
+                var fileName = Console.ReadLine();
+                manager.ExportMeetings(date, fileName);
+                Console.WriteLine("Встречи успешно экспортированы.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}. Попробуйте еще раз.");
+            }
         }
     }
 }
